@@ -15,6 +15,15 @@ body {
   background-color: #f5f5f5;
 }
 
+@media (min-width: 768px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+
 header {
   text-align: center;
   padding: 20px 0;
@@ -37,8 +46,53 @@ main {
 
 @media (min-width: 768px) {
   main {
-    grid-template-columns: 2fr 1fr;
+    flex: 1;
+    flex-wrap: nowrap;
+    min-height: 0;
   }
+
+  #activities-container,
+  #signup-container {
+    max-width: none;
+    min-height: 0;
+  }
+
+  #activities-container {
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  #activities-list {
+    flex: 1;
+    min-height: 0;
+  }
+
+  #signup-container {
+    flex: 1;
+    min-width: 260px;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  #activities-container {
+    display: flex;
+    flex-direction: column;
+    height: min(65vh, 600px);
+    overflow: hidden;
+  }
+
+  #activities-list {
+    flex: 1;
+    min-height: 0;
+  }
+}
+
+#activities-list {
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
 }
 
 section {
@@ -51,6 +105,7 @@ section {
 }
 
 section h3 {
+  flex: 0 0 auto;
   margin-bottom: 20px;
   padding-bottom: 10px;
   border-bottom: 1px solid #ddd;
@@ -72,6 +127,71 @@ section h3 {
 
 .activity-card p {
   margin-bottom: 8px;
+}
+
+.participants-section {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.participants-section h5 {
+  margin-bottom: 6px;
+  color: #1a237e;
+}
+
+.participants-list {
+  padding-left: 0;
+  list-style: none;
+  color: #555;
+}
+
+.participants-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.participant-email {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.remove-participant-button {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  color: #b71c1c;
+  background-color: transparent;
+}
+
+.remove-participant-button:hover {
+  background-color: #ffebee;
+}
+
+.remove-participant-button:focus-visible {
+  outline: 2px solid #b71c1c;
+  outline-offset: 2px;
+}
+
+.remove-participant-button svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.remove-participant-button:disabled {
+  opacity: 0.5;
+  cursor: wait;
 }
 
 .form-group {
